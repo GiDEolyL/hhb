@@ -1,0 +1,68 @@
+1请写出File类的构造方法定义?
+    public File(String pathname) {
+        if (pathname == null) {
+            throw new NullPointerException();
+        }
+        this.path = fs.normalize(pathname);
+        this.prefixLength = fs.prefixLength(this.path);
+    }
+    
+    private File(String pathname, int prefixLength) {
+        this.path = pathname;
+        this.prefixLength = prefixLength;
+    }
+    
+     private File(String child, File parent) {
+        assert parent.path != null;
+        assert (!parent.path.equals(""));
+        this.path = fs.resolve(parent.path, child);
+        this.prefixLength = parent.prefixLength;
+    }
+    public File(String parent, String child) {
+        if (child == null) {
+            throw new NullPointerException();
+        }
+        if (parent != null) {
+            if (parent.equals("")) {
+                this.path = fs.resolve(fs.getDefaultParent(),
+                                       fs.normalize(child));
+            } else {
+                this.path = fs.resolve(fs.normalize(parent),
+                                       fs.normalize(child));
+            }
+        } else {
+            this.path = fs.normalize(child);
+        }
+        this.prefixLength = fs.prefixLength(this.path);
+    }
+     public File(URI uri) {
+
+        // Check our many preconditions
+        if (!uri.isAbsolute())
+            throw new IllegalArgumentException("URI is not absolute");
+        if (uri.isOpaque())
+            throw new IllegalArgumentException("URI is not hierarchical");
+        String scheme = uri.getScheme();
+        if ((scheme == null) || !scheme.equalsIgnoreCase("file"))
+            throw new IllegalArgumentException("URI scheme is not \"file\"");
+        if (uri.getAuthority() != null)
+            throw new IllegalArgumentException("URI has an authority component");
+        if (uri.getFragment() != null)
+            throw new IllegalArgumentException("URI has a fragment component");
+        if (uri.getQuery() != null)
+            throw new IllegalArgumentException("URI has a query component");
+        String p = uri.getPath();
+        if (p.equals(""))
+            throw new IllegalArgumentException("URI path component is empty");
+
+        // Okay, now initialize
+        p = fs.fromURIPath(p);
+        if (File.separatorChar != '/')
+            p = p.replace('/', File.separatorChar);
+        this.path = fs.normalize(p);
+        this.prefixLength = fs.prefixLength(this.path);
+    }
+2请写出File中常见的方法定义?  
+   final boolean isInvalid();检查文件是否有无效路径
+   int getPrefixLength();返回的长度这一抽象路径名的前缀
+   public String getName();返回由该抽象表示的文件或目录的名称

@@ -1,0 +1,1 @@
+Student [grade1=1, grade2=1, grade3=1, sum=0]

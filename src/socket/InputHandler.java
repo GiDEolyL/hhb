@@ -12,7 +12,6 @@ public class InputHandler extends Thread {
 	public InputHandler(BufferedReader bufferedReader) {
 		this.bufferedReader = bufferedReader;
 	}
-	@Test
 	public void run() {
 		while (shouldContinue) {
 			try {

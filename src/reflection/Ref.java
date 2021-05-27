@@ -8,11 +8,11 @@ import java.lang.reflect.Method;
 public class Ref {
 	public static void main(String[] args) throws ClassNotFoundException {
 		Dog d = new Dog();
-		// getName(d);
-		// threeWay();
-		// getClassInfo(d);
-		//getNewIntance();
-		//change();
+		 getName(d);
+		 threeWay();
+		 getClassInfo(d);
+		getNewIntance();
+		change();
 		double a=11;
 		double b=0;
 		Long l=3l;

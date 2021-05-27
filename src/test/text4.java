@@ -14,8 +14,11 @@ public class text4 {
 	public static void main(String[] args) {
 		String pathname="F:\\text io\\text.txt";
 		createNewFile(pathname);
-		//writeToFile(pathname);
+		writeToFile(pathname);
 		readFromFile(pathname);
+		String a="abc";
+		String b="a";
+		System.out.println(b.indexOf(a));
 	}
 	public static void createNewFile(String pathname){
 		File file=new File(pathname);

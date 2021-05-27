@@ -25,10 +25,9 @@ public class Client {
 			
 			InputHandler inputHandler=new InputHandler(input);
 			inputHandler.start();
-			
 			while (shouldContinue) {
 				clientMessage = sc.nextLine();
-				System.out.println("client:" + clientMessage);
+				System.out.println("client发送了信息:" + clientMessage);
 
 				output.write(clientMessage + "\r");
 				output.flush();

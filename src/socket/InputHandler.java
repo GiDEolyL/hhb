@@ -2,6 +2,8 @@ package socket;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.Socket;
 
 import org.junit.Test;
 
@@ -12,6 +14,7 @@ public class InputHandler extends Thread {
 	public InputHandler(BufferedReader bufferedReader) {
 		this.bufferedReader = bufferedReader;
 	}
+
 	public void run() {
 		while (shouldContinue) {
 			try {
@@ -22,4 +25,5 @@ public class InputHandler extends Thread {
 			}
 		}
 	}
+	
 }
